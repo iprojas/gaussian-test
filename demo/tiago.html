@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>3D Gaussian Splat Demo - Garden</title>
+  <script type="text/javascript" src="js/util.js"></script>
+  <script type="importmap">
+    {
+        "imports": {
+            "three": "./lib/three.module.js",
+            "gaussian-splats-3d": "./lib/gaussian-splats-3d.module.js"
+        }
+    }
+  </script>
+  <style>
+
+    body {
+      background-color: #000000;
+      height: 100vh;
+      margin: 0px;
+    }
+
+  </style>
+
+</head>
+
+<body>
+  <script type="module">
+    import * as GaussianSplats3D from 'gaussian-splats-3d';
+    import * as THREE from 'three';
+    const viewer = new GaussianSplats3D.Viewer({
+      'cameraUp': [0, -1, -0.54],
+      'initialCameraPosition': [-0.64368, 0.08939, -0.40744],
+      'initialCameraLookAt': [-0.04411, -0.10205, 0.00212],
+      'halfPrecisionCovariancesOnGPU': true
+    });
+    let path = 'assets/data/tiago.ksplat';
+    viewer.loadFile(path , {
+    'showLoadingSpinner': false,
+    'position': [0, 0, 0],
+    'rotation': [0.9, 0, 0, 1],
+    'scale': [1, 1, 1]
+})
+.then(() => {
+    viewer.start();
+});
+  </script>
+</body>
+
+</html>
